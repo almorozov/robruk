@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}
+[RobRuk]
+{% endblock %}
+
+{% block body %}
+    <p class="lead text-success"> # Task.ID: <b> {{ task.tid }} </b> Date: <b>{{ task.date.strftime('%d-%m-%Y') }}</b> </p>
+
+    <div class="alert alert-success">
+        Title: {{ task.title }}<br>
+        Desc.(prompt): {{ task.description }}<br>
+        Link.pic: {{ task.linkpic }}<br>
+        Owner: // {{ task.TS_User.login }}<br>
+        Status task: <b>{{ task.status }}</b><br>
+    </div>
+{% endblock %}

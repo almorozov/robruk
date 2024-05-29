@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block title %}
+[RobRuk]- AdminPanel
+{% endblock %}
+
+{% block body %}
+    <div class="p-3 rounded-2" style="background-color: var(--bs-danger-bg-subtle)">
+        <p class="lead"> <b> # AdminPanel for user management </b> </p>
+    </div>
+        {% if tasks.items|length > 0 %}
+        <table class="table table-dark text-success">
+            <thead>
+                <tr>
+                    <th scope="col">#id</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Title</th>
+                    <th scope="col">Desc.(prompt)</th>
+                    <th scope="col">Link.pic</th>
+                    <th scope="col">Owner</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for el in tasks %}
+                <tr>
+                    <td>{{ el.tid }}</td>
+                    <td>{{ el.date.strftime('%d-%m-%Y') }}</td>
+                    <td>{{ el.title }}</td>
+                    <td>{{ el.description }}</td>
+                    <td>{{ el.linkpic }}</td>
+                    <td> // <b>{{ el.TS_User.login }}</b> </td>
+                    <td>{{ team[el.nteam] }}</td>
+                    <td>{{ el.status }}</td>
+                    <td><a href="/adm/{{ el.tid }}/print" class="btn btn-success" title="Read">Confirm Print</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="alert alert-success" role="alert"> {{ pagination.links }} </div>
+        {% else %}
+            <p class="lead text-success"> !!! Tasks not found</p>
+        {% endif %}
+{% endblock %}
